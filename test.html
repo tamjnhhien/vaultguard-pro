@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultGuard Pro Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f6fa;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #5a6fd8;
+        }
+        
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .test-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+        
+        .test-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 VaultGuard Pro Test Page</h1>
+        
+        <div class="info">
+            <strong>Testing Instructions:</strong>
+            <ol>
+                <li>Install the VaultGuard Pro extension in Chrome</li>
+                <li>Add some test passwords using the extension popup</li>
+                <li>Return to this page and look for 🔐 icons in the password fields below</li>
+                <li>Click the icons to test auto-fill functionality</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>Test Form 1: Standard Login</h2>
+            <div class="test-form">
+                <form>
+                    <div class="form-group">
+                        <label for="email1">Email:</label>
+                        <input type="email" id="email1" name="email" placeholder="test@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password1">Password:</label>
+                        <input type="password" id="password1" name="password" placeholder="Your password">
+                    </div>
+                    
+                    <button type="button" onclick="showValues('form1')">Show Values (Test)</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test Form 2: Username/Password</h2>
+            <div class="test-form">
+                <form>
+                    <div class="form-group">
+                        <label for="username2">Username:</label>
+                        <input type="text" id="username2" name="username" placeholder="your_username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password2">Password:</label>
+                        <input type="password" id="password2" name="password" placeholder="Your password">
+                    </div>
+                    
+                    <button type="button" onclick="showValues('form2')">Show Values (Test)</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test Form 3: Login Form</h2>
+            <div class="test-form">
+                <form>
+                    <div class="form-group">
+                        <label for="login3">Login:</label>
+                        <input type="text" id="login3" name="login" placeholder="your_login">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password3">Password:</label>
+                        <input type="password" id="password3" name="password" placeholder="Your password">
+                    </div>
+                    
+                    <button type="button" onclick="showValues('form3')">Show Values (Test)</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Extension Features to Test</h2>
+            <ul>
+                <li>✅ Look for 🔐 icons in password fields above</li>
+                <li>✅ Test auto-fill by clicking the icons</li>
+                <li>✅ Try the password generator in the extension popup</li>
+                <li>✅ Add this test page as a saved password</li>
+                <li>✅ Test search functionality in the extension</li>
+                <li>✅ Try the settings page</li>
+                <li>✅ Test import/export features</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>Browser Console</h2>
+            <p>Open Developer Tools (F12) and check the Console tab for any SecurePass-related messages or errors.</p>
+        </div>
+    </div>
+
+    <script>
+        function showValues(formId) {
+            let form;
+            if (formId === 'form1') {
+                form = {
+                    email: document.getElementById('email1').value,
+                    password: document.getElementById('password1').value
+                };
+            } else if (formId === 'form2') {
+                form = {
+                    username: document.getElementById('username2').value,
+                    password: document.getElementById('password2').value
+                };
+            } else {
+                form = {
+                    login: document.getElementById('login3').value,
+                    password: document.getElementById('password3').value
+                };
+            }
+            
+            alert('Form Values:\n' + JSON.stringify(form, null, 2));
+        }
+
+        // Test if VaultGuard Pro content script is loaded
+        window.addEventListener('load', function() {
+            console.log('VaultGuard Pro Test Page loaded');
+            console.log('Looking for password fields...');
+            
+            setTimeout(function() {
+                const passwordFields = document.querySelectorAll('input[type="password"]');
+                console.log(`Found ${passwordFields.length} password fields`);
+                
+                passwordFields.forEach((field, index) => {
+                    console.log(`Password field ${index + 1}:`, field);
+                    if (field.hasAttribute('data-securepass-enhanced')) {
+                        console.log('✅ VaultGuard Pro enhancement detected on field', index + 1);
+                    } else {
+                        console.log('⚠️ No VaultGuard Pro enhancement on field', index + 1);
+                    }
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

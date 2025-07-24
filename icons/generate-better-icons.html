@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultGuard Pro Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f6fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .icon-item {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            background: white;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .download-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .instructions {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ VaultGuard Pro Icon Generator</h1>
+        
+        <div class="instructions">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Click "Generate All Icons" to create the icons</li>
+                <li>Right-click on each canvas and select "Save image as..."</li>
+                <li>Save with the exact filenames: icon16.png, icon32.png, icon48.png, icon128.png</li>
+                <li>Replace the files in your extension's icons folder</li>
+                <li>Reload the extension in Chrome</li>
+            </ol>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-item">
+                <h3>16x16 Icon</h3>
+                <canvas id="canvas16" width="16" height="16"></canvas>
+                <br>
+                <button onclick="generateIcon(16)">Generate 16x16</button>
+            </div>
+
+            <div class="icon-item">
+                <h3>32x32 Icon</h3>
+                <canvas id="canvas32" width="32" height="32"></canvas>
+                <br>
+                <button onclick="generateIcon(32)">Generate 32x32</button>
+            </div>
+
+            <div class="icon-item">
+                <h3>48x48 Icon</h3>
+                <canvas id="canvas48" width="48" height="48"></canvas>
+                <br>
+                <button onclick="generateIcon(48)">Generate 48x48</button>
+            </div>
+
+            <div class="icon-item">
+                <h3>128x128 Icon</h3>
+                <canvas id="canvas128" width="128" height="128"></canvas>
+                <br>
+                <button onclick="generateIcon(128)">Generate 128x128</button>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2>🚀 Generate All Icons</h2>
+            <p>Create all icon sizes at once with the perfect VaultGuard Pro design!</p>
+            <button onclick="generateAllIcons()" style="background: white; color: #667eea; font-size: 16px; padding: 15px 30px;">
+                Generate All Icons
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Add roundRect polyfill for older browsers
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+
+        function generateIcon(size) {
+            const canvas = document.getElementById(`canvas${size}`);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(0.5, '#764ba2');
+            gradient.addColorStop(1, '#667eea');
+            
+            // Background with rounded corners
+            const radius = size * 0.2;
+            ctx.fillStyle = gradient;
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            
+            // Add subtle border
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = size * 0.02;
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.stroke();
+            
+            // Draw shield/vault icon
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const iconSize = size * 0.6;
+            
+            // Shield outline
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.beginPath();
+            const shieldWidth = iconSize * 0.7;
+            const shieldHeight = iconSize * 0.8;
+            const shieldX = centerX - shieldWidth / 2;
+            const shieldY = centerY - shieldHeight / 2;
+            
+            // Shield shape
+            ctx.moveTo(centerX, shieldY);
+            ctx.quadraticCurveTo(shieldX + shieldWidth, shieldY, shieldX + shieldWidth, shieldY + shieldHeight * 0.4);
+            ctx.quadraticCurveTo(shieldX + shieldWidth, shieldY + shieldHeight, centerX, shieldY + shieldHeight);
+            ctx.quadraticCurveTo(shieldX, shieldY + shieldHeight, shieldX, shieldY + shieldHeight * 0.4);
+            ctx.quadraticCurveTo(shieldX, shieldY, centerX, shieldY);
+            ctx.fill();
+            
+            // Lock symbol inside shield
+            ctx.fillStyle = '#667eea';
+            const lockSize = iconSize * 0.3;
+            
+            // Lock body
+            const lockBodyWidth = lockSize * 0.6;
+            const lockBodyHeight = lockSize * 0.5;
+            const lockBodyX = centerX - lockBodyWidth / 2;
+            const lockBodyY = centerY + lockSize * 0.1;
+            
+            ctx.roundRect(lockBodyX, lockBodyY, lockBodyWidth, lockBodyHeight, lockBodyWidth * 0.1);
+            ctx.fill();
+            
+            // Lock shackle
+            ctx.strokeStyle = '#667eea';
+            ctx.lineWidth = size * 0.04;
+            ctx.beginPath();
+            const shackleRadius = lockSize * 0.25;
+            ctx.arc(centerX, centerY - lockSize * 0.05, shackleRadius, Math.PI, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Keyhole
+            ctx.fillStyle = 'white';
+            const keyholeRadius = size * 0.025;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY + lockSize * 0.05, keyholeRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Key slot
+            const slotWidth = keyholeRadius * 0.6;
+            const slotHeight = size * 0.05;
+            ctx.fillRect(centerX - slotWidth / 2, centerY + lockSize * 0.05, slotWidth, slotHeight);
+            
+            // Add shine effect
+            const shineGradient = ctx.createLinearGradient(0, 0, size * 0.3, size * 0.3);
+            shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+            shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            
+            ctx.fillStyle = shineGradient;
+            ctx.beginPath();
+            ctx.arc(size * 0.25, size * 0.25, size * 0.3, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            console.log(`Generated ${size}x${size} icon`);
+        }
+        
+        function generateAllIcons() {
+            const sizes = [16, 32, 48, 128];
+            sizes.forEach(size => {
+                generateIcon(size);
+            });
+            
+            setTimeout(() => {
+                alert('🎉 All icons generated successfully!\\n\\nNow right-click on each canvas and save as:\\n• icon16.png\\n• icon32.png\\n• icon48.png\\n• icon128.png\\n\\nThen replace the files in your extension folder and reload the extension.');
+            }, 500);
+        }
+        
+        // Generate all icons when page loads
+        window.onload = function() {
+            setTimeout(generateAllIcons, 1000);
+        };
+    </script>
+</body>
+</html>

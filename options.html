@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultGuard Pro Settings</title>
+    <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="icons/icon32.png" alt="VaultGuard Pro" class="logo-icon">
+                <h1>VaultGuard Pro Settings</h1>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="settings-section">
+                <h2>Security Settings</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="autoLock" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        <div class="setting-info">
+                            <div class="setting-title">Auto-lock Extension</div>
+                            <div class="setting-description">Automatically lock the extension after a period of inactivity</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="setting-item" id="lockTimeoutSetting" style="display: none;">
+                    <div class="setting-info">
+                        <div class="setting-title">Lock Timeout</div>
+                        <div class="setting-description">Time before auto-lock activates</div>
+                    </div>
+                    <select id="lockTimeout" class="setting-select">
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes</option>
+                        <option value="15">15 minutes</option>
+                        <option value="30">30 minutes</option>
+                        <option value="60">1 hour</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="showPasswordStrength" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        <div class="setting-info">
+                            <div class="setting-title">Show Password Strength</div>
+                            <div class="setting-description">Display password strength indicator when generating passwords</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Password Generator Defaults</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Default Password Length</div>
+                        <div class="setting-description">Default length for generated passwords</div>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" id="defaultPasswordLength" min="8" max="50" value="16" class="slider">
+                        <span id="defaultLengthValue" class="slider-value">16</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="defaultUppercase" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        <div class="setting-info">
+                            <div class="setting-title">Include Uppercase Letters</div>
+                            <div class="setting-description">Include A-Z by default</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="defaultLowercase" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        <div class="setting-info">
+                            <div class="setting-title">Include Lowercase Letters</div>
+                            <div class="setting-description">Include a-z by default</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="defaultNumbers" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        <div class="setting-info">
+                            <div class="setting-title">Include Numbers</div>
+                            <div class="setting-description">Include 0-9 by default</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="defaultSymbols" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        <div class="setting-info">
+                            <div class="setting-title">Include Symbols</div>
+                            <div class="setting-description">Include special characters by default</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Data Management</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Export Passwords</div>
+                        <div class="setting-description">Export your passwords to a JSON file (passwords will be visible)</div>
+                    </div>
+                    <button id="exportBtn" class="action-btn export-btn">Export Data</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-title">Import Passwords</div>
+                        <div class="setting-description">Import passwords from a JSON file</div>
+                    </div>
+                    <div class="import-controls">
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                        <button id="importBtn" class="action-btn import-btn">Import Data</button>
+                    </div>
+                </div>
+
+                <div class="setting-item danger-section">
+                    <div class="setting-info">
+                        <div class="setting-title">Clear All Data</div>
+                        <div class="setting-description">Permanently delete all stored passwords (this cannot be undone)</div>
+                    </div>
+                    <button id="clearDataBtn" class="action-btn danger-btn">Clear All Data</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>About</h2>
+                
+                <div class="about-info">
+                    <div class="about-item">
+                        <strong>Version:</strong> 1.0.0
+                    </div>
+                    <div class="about-item">
+                        <strong>Description:</strong> A secure and user-friendly password manager for Chrome
+                    </div>
+                    <div class="about-item">
+                        <strong>Privacy:</strong> All passwords are stored locally on your device and never sent to any server
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <button id="saveSettingsBtn" class="save-btn">Save Settings</button>
+            <div class="status-message" id="statusMessage"></div>
+        </footer>
+    </div>
+
+    <script src="scripts/options.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Extension Icons</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .icon-generator { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        button { padding: 10px 20px; margin: 5px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>SecurePass Icon Generator</h1>
+    <p>This page generates the required icon sizes for the Chrome extension. Right-click on each canvas and "Save image as" to download the PNG files.</p>
+    
+    <div class="icon-generator">
+        <h3>16x16 Icon</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <button onclick="generateIcon(16)">Generate 16x16</button>
+    </div>
+    
+    <div class="icon-generator">
+        <h3>32x32 Icon</h3>
+        <canvas id="icon32" width="32" height="32"></canvas>
+        <button onclick="generateIcon(32)">Generate 32x32</button>
+    </div>
+    
+    <div class="icon-generator">
+        <h3>48x48 Icon</h3>
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <button onclick="generateIcon(48)">Generate 48x48</button>
+    </div>
+    
+    <div class="icon-generator">
+        <h3>128x128 Icon</h3>
+        <canvas id="icon128" width="128" height="128"></canvas>
+        <button onclick="generateIcon(128)">Generate 128x128</button>
+    </div>
+    
+    <button onclick="generateAllIcons()">Generate All Icons</button>
+    
+    <script>
+        function generateIcon(size) {
+            const canvas = document.getElementById(`icon${size}`);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            // Background with rounded corners
+            const radius = size * 0.15;
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, radius);
+            ctx.fill();
+            
+            // Lock icon
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const lockSize = size * 0.6;
+            
+            // Lock body
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            const bodyWidth = lockSize * 0.6;
+            const bodyHeight = lockSize * 0.4;
+            const bodyX = centerX - bodyWidth / 2;
+            const bodyY = centerY + lockSize * 0.1;
+            
+            ctx.beginPath();
+            ctx.roundRect(bodyX, bodyY, bodyWidth, bodyHeight, bodyWidth * 0.1);
+            ctx.fill();
+            
+            // Lock shackle
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.lineWidth = size * 0.05;
+            ctx.beginPath();
+            const shackleRadius = lockSize * 0.25;
+            ctx.arc(centerX, centerY - lockSize * 0.1, shackleRadius, Math.PI, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Keyhole
+            ctx.fillStyle = '#667eea';
+            const keyholeRadius = size * 0.04;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY + lockSize * 0.05, keyholeRadius, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Key slot
+            const slotWidth = keyholeRadius * 0.8;
+            const slotHeight = size * 0.08;
+            ctx.fillRect(centerX - slotWidth / 2, centerY + lockSize * 0.05, slotWidth, slotHeight);
+        }
+        
+        function generateAllIcons() {
+            [16, 32, 48, 128].forEach(size => generateIcon(size));
+        }
+        
+        // Add roundRect polyfill for older browsers
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+        
+        // Generate all icons on page load
+        window.onload = generateAllIcons;
+    </script>
+</body>
+</html>

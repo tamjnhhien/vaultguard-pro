@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaultGuard Pro</title>
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="icons/icon32.png" alt="VaultGuard Pro" class="logo-icon">
+                <h1>VaultGuard Pro</h1>
+            </div>
+            <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search passwords..." class="search-input">
+        </div>
+
+        <div class="tabs">
+            <button id="passwordsTab" class="tab-btn active">Passwords</button>
+            <button id="generateTab" class="tab-btn">Generate</button>
+        </div>
+
+        <div id="passwordsView" class="view active">
+            <div class="add-password-section">
+                <button id="addPasswordBtn" class="add-btn">+ Add New Password</button>
+            </div>
+
+            <div id="passwordsList" class="passwords-list">
+                <!-- Passwords will be dynamically loaded here -->
+            </div>
+
+            <div id="noPasswords" class="no-passwords" style="display: none;">
+                <div class="empty-state">
+                    <div class="empty-icon">🔐</div>
+                    <h3>No passwords saved yet</h3>
+                    <p>Click "Add New Password" to get started</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="generateView" class="view">
+            <div class="generate-section">
+                <h3>Password Generator</h3>
+                
+                <div class="form-group">
+                    <label for="passwordLength">Length: <span id="lengthValue">12</span></label>
+                    <input type="range" id="passwordLength" min="8" max="50" value="12" class="slider">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeUppercase" checked>
+                        <span class="checkmark"></span>
+                        Uppercase (A-Z)
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeLowercase" checked>
+                        <span class="checkmark"></span>
+                        Lowercase (a-z)
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeNumbers" checked>
+                        <span class="checkmark"></span>
+                        Numbers (0-9)
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeSymbols">
+                        <span class="checkmark"></span>
+                        Symbols (!@#$...)
+                    </label>
+                </div>
+
+                <button id="generateBtn" class="generate-btn">Generate Password</button>
+
+                <div id="generatedPassword" class="generated-password" style="display: none;">
+                    <div class="password-display">
+                        <input type="text" id="generatedPasswordText" readonly>
+                        <button id="copyGeneratedBtn" class="copy-btn" title="Copy">📋</button>
+                    </div>
+                    <div class="password-strength">
+                        <span>Strength: </span>
+                        <span id="strengthIndicator" class="strength-indicator"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add/Edit Password Modal -->
+        <div id="passwordModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Add New Password</h3>
+                    <button id="closeModal" class="close-btn">&times;</button>
+                </div>
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="siteName">Website/Service Name</label>
+                        <input type="text" id="siteName" required placeholder="e.g., Google, Facebook">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteUrl">Website URL (optional)</label>
+                        <input type="url" id="siteUrl" placeholder="https://example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username/Email</label>
+                        <input type="text" id="username" required placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input-group">
+                            <input type="password" id="password" required>
+                            <button type="button" id="togglePassword" class="toggle-btn">👁️</button>
+                            <button type="button" id="generateForForm" class="generate-small-btn">🎲</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes (optional)</label>
+                        <textarea id="notes" rows="3" placeholder="Additional notes..."></textarea>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" id="cancelBtn" class="cancel-btn">Cancel</button>
+                        <button type="submit" id="saveBtn" class="save-btn">Save Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast notifications -->
+        <div id="toast" class="toast" style="display: none;"></div>
+    </div>
+
+    <script src="scripts/popup.js"></script>
+</body>
+</html>
