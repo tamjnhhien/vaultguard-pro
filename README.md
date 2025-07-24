@@ -33,7 +33,7 @@
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/vaultguard-pro.git
+   git clone https://github.com/tamjnhhien/vaultguard-pro.git
    cd vaultguard-pro
    ```
 
@@ -47,7 +47,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vaultguard-pro.git
+git clone https://github.com/tamjnhhien/vaultguard-pro.git
 
 # Navigate to project directory
 cd vaultguard-pro
@@ -155,7 +155,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 📖 **Documentation** - Check our [Installation Guide](INSTALLATION.md)
 - 🐛 **Bug Reports** - Open an issue on GitHub
 - 💡 **Feature Requests** - We'd love to hear your ideas!
-- 📧 **Contact** - [Your contact information]
+- 📧 **Contact** - tamjnhhien@gmail.com
 
 ## 🔄 Changelog
 

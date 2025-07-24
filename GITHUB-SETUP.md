@@ -17,10 +17,10 @@
 #### Step 2: Connect Local Repository to GitHub
 ```bash
 # Copy the repository URL from GitHub (should look like):
-# https://github.com/yourusername/vaultguard-pro.git
+# https://github.com/tamjnhhien/vaultguard-pro.git
 
 # Add GitHub as remote origin
-git remote add origin https://github.com/yourusername/vaultguard-pro.git
+git remote add origin https://github.com/tamjnhhien/vaultguard-pro.git
 
 # Push your code to GitHub
 git push -u origin main
@@ -160,10 +160,10 @@ After creating your repository:
 ### 🏆 Repository URLs Structure
 
 Your repository will be available at:
-- **Main Repository:** `https://github.com/yourusername/vaultguard-pro`
-- **Clone URL:** `https://github.com/yourusername/vaultguard-pro.git`
-- **Download ZIP:** `https://github.com/yourusername/vaultguard-pro/archive/main.zip`
-- **Releases:** `https://github.com/yourusername/vaultguard-pro/releases`
+- **Main Repository:** `https://github.com/tamjnhhien/vaultguard-pro`
+- **Clone URL:** `https://github.com/tamjnhhien/vaultguard-pro.git`
+- **Download ZIP:** `https://github.com/tamjnhhien/vaultguard-pro/archive/main.zip`
+- **Releases:** `https://github.com/tamjnhhien/vaultguard-pro/releases`
 
 ### 📞 Need Help?
 
@@ -179,7 +179,7 @@ If you encounter issues:
 
 ```bash
 # Add remote origin (replace with your actual URL)
-git remote add origin https://github.com/yourusername/vaultguard-pro.git
+git remote add origin https://github.com/tamjnhhien/vaultguard-pro.git
 
 # Push to GitHub
 git push -u origin main

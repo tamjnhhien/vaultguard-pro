@@ -16,7 +16,7 @@ Thank you for your interest in contributing to VaultGuard Pro! We welcome contri
 1. **Fork the Repository**
    ```bash
    # Click the "Fork" button on GitHub, then clone your fork
-   git clone https://github.com/yourusername/vaultguard-pro.git
+   git clone https://github.com/tamjnhhien/vaultguard-pro.git
    cd vaultguard-pro
    ```
 
